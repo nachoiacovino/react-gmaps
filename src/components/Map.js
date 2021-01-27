@@ -1,4 +1,4 @@
-import { GoogleMap, StandaloneSearchBox, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, Marker, StandaloneSearchBox, useJsApiLoader } from '@react-google-maps/api';
 import { memo, useCallback, useState } from 'react';
 
 const containerStyle = {
@@ -64,6 +64,7 @@ const Map = () => {
           }}
         />
       </StandaloneSearchBox>
+      <Marker onLoad={onLoad} position={center} />
     </GoogleMap>
   ) : (
     <></>
