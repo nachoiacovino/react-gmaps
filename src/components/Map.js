@@ -1,4 +1,4 @@
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, StandaloneSearchBox, useJsApiLoader } from '@react-google-maps/api';
 import { memo, useCallback, useState } from 'react';
 
 const containerStyle = {
@@ -11,23 +11,28 @@ const center = {
   lng: 2.1734,
 };
 
-function MyComponent() {
+const Map = () => {
+  const [libraries] = useState(['places']);
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries,
   });
 
   const [map, setMap] = useState(null);
 
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
+    /*     map.fitBounds(bounds); */
     setMap(map);
   }, []);
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
+
+  const onPlacesChanged = (e) => console.log(e);
 
   return isLoaded ? (
     <GoogleMap
@@ -36,10 +41,33 @@ function MyComponent() {
       zoom={10}
       onLoad={onLoad}
       onUnmount={onUnmount}
-    ></GoogleMap>
+    >
+      <StandaloneSearchBox onLoad={onLoad} onPlacesChanged={onPlacesChanged}>
+        <input
+          type='text'
+          placeholder='Buscar'
+          style={{
+            marginTop: `70px`,
+            boxSizing: `border-box`,
+            border: `1px solid transparent`,
+            width: `260px`,
+            height: `50px`,
+            padding: `0 12px`,
+            borderRadius: `3px`,
+            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+            fontSize: `18px`,
+            outline: `none`,
+            textOverflow: `ellipses`,
+            position: 'absolute',
+            left: '50%',
+            marginLeft: '-130px',
+          }}
+        />
+      </StandaloneSearchBox>
+    </GoogleMap>
   ) : (
     <></>
   );
-}
+};
 
-export default memo(MyComponent);
+export default memo(Map);
