@@ -32,9 +32,9 @@ const Map = () => {
     setMap(map);
   }, []);
 
-  const onSearchLoad = (ref) => {
+  const onSearchLoad = useCallback(function callback(ref) {
     setSearchBox(ref);
-  };
+  }, []);
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
