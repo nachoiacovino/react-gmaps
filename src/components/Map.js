@@ -1,5 +1,8 @@
 import { GoogleMap, Marker, StandaloneSearchBox, useJsApiLoader } from '@react-google-maps/api';
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addMarker } from '../redux/markers/markersActions';
 
 const containerStyle = {
   width: '100vw',
@@ -13,6 +16,8 @@ const center = {
 
 const Map = () => {
   const [libraries] = useState(['places']);
+  const dispatch = useDispatch();
+  const markers = useSelector(({ markers }) => markers);
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -44,6 +49,7 @@ const Map = () => {
     let lng = loc.lng();
     console.log(searchBox.getPlaces());
     console.log({ lat, lng });
+    dispatch(addMarker({ lat, lng }));
   };
 
   return isLoaded ? (
