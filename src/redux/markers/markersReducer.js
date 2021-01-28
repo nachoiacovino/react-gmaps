@@ -1,6 +1,6 @@
 import { ADD_MARKER } from './markersTypes';
 
-const initialState = [];
+export const initialState = [];
 
 const markersReducer = (state = initialState, { type, payload }) => {
   switch (type) {
