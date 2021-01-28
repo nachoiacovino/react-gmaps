@@ -59,7 +59,9 @@ const Map = () => {
         onLoad={onSearchLoad}
         onPlacesChanged={onPlacesChanged}
       >
-        <input type='text' placeholder='Buscar' className='gInput' />
+        <div className='gInput-container'>
+          <input type='text' placeholder='Buscar' className='gInput' />
+        </div>
       </StandaloneSearchBox>
       {markers.map((marker) => (
         <Marker key={marker.lat} onLoad={onLoad} position={marker} />
