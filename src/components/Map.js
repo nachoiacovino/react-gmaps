@@ -32,7 +32,7 @@ const Map = () => {
     setMap(map);
   }, []);
 
-  const onSearchLoaded = (ref) => {
+  const onSearchLoad = (ref) => {
     setSearchBox(ref);
   };
 
@@ -56,7 +56,7 @@ const Map = () => {
       onUnmount={onUnmount}
     >
       <StandaloneSearchBox
-        onLoad={onSearchLoaded}
+        onLoad={onSearchLoad}
         onPlacesChanged={onPlacesChanged}
       >
         <input type='text' placeholder='Buscar' className='gInput' />
