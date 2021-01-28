@@ -60,7 +60,11 @@ const Map = () => {
         onPlacesChanged={onPlacesChanged}
       >
         <div className='gInput-container'>
-          <input type='text' placeholder='Buscar' className='gInput' />
+          <input
+            type='text'
+            placeholder='Search places...'
+            className='gInput'
+          />
         </div>
       </StandaloneSearchBox>
       {markers.map((marker) => (
