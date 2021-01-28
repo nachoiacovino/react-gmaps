@@ -8,7 +8,7 @@ An array of the suggestions is stored in Redux, and persisted in the browser.
 
 The app was built with React 17 with hooks and Redux (also with hooks).
 
-The app is fully tested with jest and enzyme.
+The app is fully tested with jest and enzyme, components are not tested because all the functionality comes from the @react-google-maps/api package.
 
 ## Available Scripts
 
@@ -19,6 +19,8 @@ In your console, first you need to clone the repository
 After that, you need install the dependencies with:
 
 ### `npm install`
+
+After that, you need to create an .env file and add your Google API key. There's a .env.template file so you can see how it works.
 
 Then, you can launch the server with:
 
