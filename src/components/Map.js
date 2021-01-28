@@ -1,5 +1,5 @@
 import { GoogleMap, Marker, StandaloneSearchBox, useJsApiLoader } from '@react-google-maps/api';
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addMarker } from '../redux/markers/markersActions';
@@ -25,7 +25,7 @@ const Map = () => {
     libraries,
   });
 
-  const [map, setMap] = useState(null);
+  const [, setMap] = useState(null);
   const [searchBox, setSearchBox] = useState(null);
 
   const onLoad = useCallback(function callback(map) {

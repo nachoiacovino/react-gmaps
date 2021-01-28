@@ -2,7 +2,7 @@ import { ADD_MARKER } from './markersTypes';
 
 const initialState = [];
 
-export default (state = initialState, { type, payload }) => {
+const markersReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_MARKER:
       const markedToAdd = state.find(
@@ -14,3 +14,5 @@ export default (state = initialState, { type, payload }) => {
       return state;
   }
 };
+
+export default markersReducer;
