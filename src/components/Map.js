@@ -21,6 +21,7 @@ const Map = () => {
   });
 
   const [map, setMap] = useState(null);
+  const [searchBox, setSearchBox] = useState(null);
 
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
@@ -28,11 +29,22 @@ const Map = () => {
     setMap(map);
   }, []);
 
+  const onSearchLoaded = (ref) => {
+    console.log({ ref });
+    setSearchBox(ref);
+  };
+
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
 
-  const onPlacesChanged = (e) => console.log(e);
+  const onPlacesChanged = () => {
+    let loc = searchBox.getPlaces()[0].geometry.location;
+    let lat = loc.lat();
+    let lng = loc.lng();
+    console.log(searchBox.getPlaces());
+    console.log({ lat, lng });
+  };
 
   return isLoaded ? (
     <GoogleMap
@@ -42,7 +54,10 @@ const Map = () => {
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      <StandaloneSearchBox onLoad={onLoad} onPlacesChanged={onPlacesChanged}>
+      <StandaloneSearchBox
+        onLoad={onSearchLoaded}
+        onPlacesChanged={onPlacesChanged}
+      >
         <input type='text' placeholder='Buscar' className='gInput' />
       </StandaloneSearchBox>
       <Marker onLoad={onLoad} position={center} />
