@@ -66,7 +66,9 @@ const Map = () => {
       >
         <input type='text' placeholder='Buscar' className='gInput' />
       </StandaloneSearchBox>
-      <Marker onLoad={onLoad} position={center} />
+      {markers.map((marker) => (
+        <Marker key={marker.lat} onLoad={onLoad} position={marker} />
+      ))}
     </GoogleMap>
   ) : (
     <></>
