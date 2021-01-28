@@ -43,26 +43,7 @@ const Map = () => {
       onUnmount={onUnmount}
     >
       <StandaloneSearchBox onLoad={onLoad} onPlacesChanged={onPlacesChanged}>
-        <input
-          type='text'
-          placeholder='Buscar'
-          style={{
-            marginTop: `70px`,
-            boxSizing: `border-box`,
-            border: `1px solid transparent`,
-            width: `260px`,
-            height: `50px`,
-            padding: `0 12px`,
-            borderRadius: `3px`,
-            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-            fontSize: `18px`,
-            outline: `none`,
-            textOverflow: `ellipses`,
-            position: 'absolute',
-            left: '50%',
-            marginLeft: '-130px',
-          }}
-        />
+        <input type='text' placeholder='Buscar' className='gInput' />
       </StandaloneSearchBox>
       <Marker onLoad={onLoad} position={center} />
     </GoogleMap>
