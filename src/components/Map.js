@@ -29,13 +29,10 @@ const Map = () => {
   const [searchBox, setSearchBox] = useState(null);
 
   const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    /*     map.fitBounds(bounds); */
     setMap(map);
   }, []);
 
   const onSearchLoaded = (ref) => {
-    console.log({ ref });
     setSearchBox(ref);
   };
 
@@ -47,8 +44,6 @@ const Map = () => {
     let loc = searchBox.getPlaces()[0].geometry.location;
     let lat = loc.lat();
     let lng = loc.lng();
-    console.log(searchBox.getPlaces());
-    console.log({ lat, lng });
     dispatch(addMarker({ lat, lng }));
   };
 
